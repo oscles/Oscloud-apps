@@ -1,0 +1,98 @@
+{% extends 'admin_oscloud/base/base.html' %}{% load static %}
+{% block title %}Empleados {% endblock %}
+{% block estilos %}
+    <link rel="stylesheet" href="{% static 'admin_oscloud/vendors/css/select2.min.css' %}">
+{% endblock %}
+{% block contenido %}
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Crear Empleado</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <!-- start form for validation -->
+                            <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+                                <form id="demo-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+                                    <div class='col-sm-6 col-xs-6' style="padding: 0">
+                                        <div class="form-group">
+                                            <label for="{{ form.first_name.name }}">Nombre</label>
+                                            {{ form.first_name }}
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-6 col-xs-6' style="padding-right: 0px">
+                                        <div class="form-group">
+                                            <label for="{{ form.last_name.name }}">
+                                                Apellido
+                                            </label>
+                                            {{ form.last_name }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{ form.telefono.name }}">{{ form.telefono.label }}</label>
+                                        {{ form.telefono }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{ form.direccion.name }}">{{ form.direccion.label }}</label>
+                                        {{ form.direccion }}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12">
+                                            <label for="{{ form.email.name }}">{{ form.email.label }}</label>
+                                            {{ form.email }}
+                                        </div>
+                                        <div class="col-md-6 col-xs-12">
+                                            <label for="{{ form.fecha_nacimiento.name }}">{{ form.fecha_nacimiento.label }}</label>
+                                            {{ form.fecha_nacimiento }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group"></div>
+                                    <div class="form-group">
+                                        <label for="{{ form.foto.name }}">{{ form.foto.label }}</label>
+                                        {{ form.foto }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{ form.url.name }}">{{ form.url.label }}</label>
+                                        {{ form.url }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{ form.profesion.name }}">{{ form.profesion.label }}</label>
+                                        {{ form.profesion }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{ form.perfil.name }}">{{ form.perfil.label }}</label>
+                                        {{ form.perfil }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{ form.cargo_empleado.name }}">{{ form.cargo_empleado.label }}</label>
+                                        {{ form.cargo_empleado }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{ form.skills.name }}">{{ form.skills.label }}</label>
+                                        {{ form.skills }}
+                                    </div>
+                                    <div class="form-group col-sm-6 col-sm-offset-3 col-xs-12">
+                                        <button class="btn btn-block btn-success" type="submit">Guardar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end form for validations -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+{% endblock %}
+{% block javascript %}
+    <script src="{% static 'admin_oscloud/vendors/js/moment.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/select2.min.js' %}"></script>
+{% endblock %}

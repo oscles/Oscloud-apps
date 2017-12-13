@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %}| OsCloud</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'admin_oscloud/vendors/css/nprogress.css' %}" rel="stylesheet">
+    {% block estilos %}
+        <link href="{% static 'admin_oscloud/vendors/css/daterangepicker.css' %}" rel="stylesheet">
+        <link href="{% static 'admin_oscloud/vendors/css/bootstrap-datetimepicker.css' %}" rel="stylesheet">
+    {% endblock %}
+    <link href="{% static 'admin_oscloud/build/css/custom.min.css' %}" rel="stylesheet">
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="{% url 'empleado:perfil' %}"
+                       class="site_title">
+                        <i class="fa fa-cloud"></i>
+                        <span>OsCloud!</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="{% static 'admin_oscloud/images/img.jpg' %}"
+                             alt="{{ user.first_name|title }}"
+                             class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>Bienvenido,</span>
+                        <h2>{{ user.first_name|title }}</h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br/>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        {# <h3>General</h3>#}
+                        <ul class="nav side-menu">
+                            <li><a><i class="fa fa-sitemap"></i> Proyectos <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{% url 'proyecto:crear' %}">Crear proyectos</a>
+                                    <li><a href="{% url 'proyecto:listar' %}">Listar proyectos</a>
+                                    <li><a>Categorías<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li class="sub_menu"><a href="{% url 'proyecto:categoria' %}">Crear
+                                                categoría</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-css3"></i> Tecnologías <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{% url 'proyecto:tecnologia' %}">Crear tecnologías</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-user"></i> Clientes <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{% url 'cliente:crear' %}">Crear clientes</a>
+                                    <li><a href="{% url 'cliente:listar' %}">Listar clientes</a>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-group"></i> Empleados <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{% url 'empleado:crear' %}">Crear empleados</a>
+                                    <li><a href="{% url 'empleado:listar' %}">Listar empleados</a>
+                                    <li><a>Cargos<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li class="sub_menu"><a href="{% url 'empleado:cargo' %}">Crear cargo</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-book"></i> Eventos <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{% url 'evento:crear' %}">Crear eventos</a></li>
+                                    <li><a href="{% url 'evento:listar' %}">Listar eventos</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-code"></i> Habilidades <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{% url 'empleado:habilidad' %}">Crear habilidad</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="{% static 'admin_oscloud/images/img.jpg' %}"
+                                     alt="{{ user.first_name|title }}">{{ user.first_name|title }}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="{% url 'empleado:perfil' %}"> Perfil</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Configuraciones</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:;">Ayuda</a></li>
+                                <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out pull-right"></i> Salir</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green">6</span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="{% static 'admin_oscloud/images/img.jpg' %}"
+                                                                 alt="Profile Image"/></span>
+                                        <span>
+                          <span>Ronaldo López Zuñiga</span>
+                          <span class="time">hace 3 minutos</span>
+                        </span>
+                                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="{% static 'admin_oscloud/images/img.jpg' %}"
+                                                                 alt="Profile Image"/></span>
+                                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="{% static 'admin_oscloud/images/img.jpg' %}"
+                                                                 alt="Profile Image"/></span>
+                                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="{% static 'admin_oscloud/images/img.jpg' %}"
+                                                                 alt="Profile Image"/></span>
+                                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        {% block contenido %}
+
+        {% endblock %}
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                ©2017 All Rights Reserved.<a href="https://colorlib.com">OsCloud Tecnología</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+</body>
+<!-- script -->
+<script src="{% static 'admin_oscloud/vendors/js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'admin_oscloud/vendors/js/fastclick.js' %}"></script>
+<!-- NProgress -->
+<script src="{% static 'admin_oscloud/vendors/js/nprogress.js' %}"></script>
+<!-- bootstrap-progressbar -->
+<script src="{% static 'admin_oscloud/vendors/js/bootstrap-progressbar.min.js' %}"></script>
+<!-- morris.js -->
+{% block javascript %}
+    <script src="{% static 'admin_oscloud/vendors/js/raphael.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/morris.min.js' %}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{% static 'admin_oscloud/vendors/js/moment.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/daterangepicker.js' %} "></script>
+    <!-- Custom Theme Scripts -->
+{% endblock %}
+<script src="{% static 'admin_oscloud/build/js/custom.js' %}"></script>
+</html>

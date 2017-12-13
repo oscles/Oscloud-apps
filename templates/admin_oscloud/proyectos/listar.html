@@ -1,0 +1,103 @@
+{% extends 'admin_oscloud/base/base.html' %}{% load static humanize %}
+{% block title %}Listar Proyectos {% endblock %}
+{% block estilos %}
+    <link rel="stylesheet" href="{% static 'admin_oscloud/vendors/css/dataTables.bootstrap.min.css' %}">
+{% endblock estilos %}
+{% block contenido %}
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Listado de proyectos</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <table id="datatable" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre de proyecto</th>
+                                    <th>Fecha de entrega</th>
+                                    <th>Equipo</th>
+                                    <th>Progreso</th>
+                                    <th>Estado</th>
+                                    <th>Valor del proyecto</th>
+                                    <th>Acción</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for proyecto in listado_proyectos %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ proyecto.nombre }}</td>
+                                        <td>{{ proyecto.fecha_entrega }}</td>
+                                        <td>
+                                            <ul class="list-inline">
+                                                {% for empleado in proyecto.empleados.all %}
+                                                    <li>
+                                                        <img src="{% static 'admin_oscloud/images/user.png' %}"
+                                                             class="avatar"
+                                                             alt="{{ empleado }}"
+                                                             title="{{ empleado }}">
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </td>
+                                        <td class="project_progress">
+                                            <div class="progress progress_sm">
+                                                <div class="progress-bar bg-green"
+                                                     role="progressbar"
+                                                     data-transitiongoal="{{ proyecto.progreso }}">
+                                                </div>
+                                            </div>
+                                            <small>{{ proyecto.progreso }}% Completado</small>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                    {% if proyecto.estado == 'cancelado' %}
+                                                        class="btn btn-danger btn-xs"
+                                                    {% elif proyecto.estado == 'incompleto' %}
+                                                        class="btn btn-warning btn-xs"
+                                                    {% elif proyecto.estado == 'iniciado'  %}
+                                                        class="btn btn-info btn-xs"
+                                                    {% else %}
+                                                        class="btn btn-success btn-xs"
+                                                    {% endif %}>
+                                                {{ proyecto.estado|title }}
+                                            </button>
+
+                                        </td>
+                                        <td>${{ proyecto.valor_proyecto|intcomma }}</td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Ver
+                                            </a>
+                                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar
+                                            </a>
+                                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
+                                                Eliminar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+{% endblock %}
+{% block javascript %}
+    <script src="{% static 'admin_oscloud/vendors/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/dataTables.fixedHeader.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/dataTables.keyTable.min.js' %}"></script>
+{% endblock %}

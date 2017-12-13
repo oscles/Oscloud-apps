@@ -1,0 +1,101 @@
+{% extends 'admin_oscloud/base/base.html' %}{% load static %}
+{% block title %}Proyectos {% endblock %}
+{% block estilos%}
+    <link rel="stylesheet" href="{% static 'admin_oscloud/vendors/css/select2.min.css' %}">
+{% endblock %}
+{% block contenido %}
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Crear Proyecto</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <!-- start form for validation -->
+                            <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+                                <form id="demo-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="{{ form.nombre.name }}">{{ form.nombre.label }}</label>
+                                        {{ form.nombre }}
+                                    </div>
+                                    <div class='col-sm-6 col-xs-6' style="padding: 0">
+                                        <div class="form-group">
+                                            <label for="{{ form.fecha_inicio.name }}">{{ form.fecha_inicio.label }}</label>
+                                            <div class='input-group date' id='datetimepicker1'>
+                                                {{ form.fecha_inicio }}
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-6 col-xs-6' style="padding-right: 0px">
+                                        <div class="form-group">
+                                            <label for="{{ form.fecha_entrega.name }}">{{ form.fecha_entrega.label }}</label>
+                                            <div class='input-group date' id='datetimepicker2'>
+                                                {{ form.fecha_entrega }}
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{ form.estado.name }}">{{ form.estado.label }}</label>
+                                        {{ form.estado }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{ form.imagen_proyecto.name }}">{{ form.imagen_proyecto.label }}</label>
+                                        {{ form.imagen_proyecto }}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12">
+                                            <label for="{{ form.valor_proyecto.name }}">{{ form.valor_proyecto.label }}</label>
+                                            {{ form.valor_proyecto }}
+                                        </div>
+                                        <div class="col-md-6 col-xs-12">
+                                            <label for="{{ form.cliente.name }}">{{ form.cliente.label }}</label>
+                                            {{ form.cliente }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group"></div>
+                                    <div class="form-group">
+                                        <label for="{{ form.tipo.name }}">{{ form.tipo.label }}</label>
+                                        {{ form.tipo }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{ form.tecnologias.name }}">{{ form.tecnologias.label }}</label>
+                                        {{ form.tecnologias }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{ form.empleados.name }}">{{ form.empleados.label }}</label>
+                                        {{ form.empleados }}
+                                    </div>
+                                    <div class="form-group col-sm-6 col-sm-offset-3 col-xs-12">
+                                        <button class="btn btn-block btn-success" type="submit">Guardar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end form for validations -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+{% endblock %}
+{% block javascript %}
+    <script src="{% static 'admin_oscloud/vendors/js/moment.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/select2.min.js' %}"></script>
+    <script type="text/javascript">
+    </script>
+{% endblock %}
+

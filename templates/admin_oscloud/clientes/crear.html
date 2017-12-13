@@ -1,0 +1,45 @@
+{% extends 'admin_oscloud/base/base.html' %}{% load static %}
+{% block title %}Cliente {% endblock %}
+{% block estilos%}
+    <link rel="stylesheet" href="{% static 'admin_oscloud/vendors/css/select2.min.css' %}">
+{% endblock %}
+{% block contenido %}
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Crear Cliente</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <!-- start form for validation -->
+                            <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+                                <form id="demo-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+                                    {{ form.as_p }}
+                                    <div class="form-group col-sm-6 col-sm-offset-3 col-xs-12">
+                                        <button class="btn btn-block btn-success" type="submit">Guardar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end form for validations -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+{% endblock %}
+{% block javascript %}
+    <script src="{% static 'admin_oscloud/vendors/js/moment.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'admin_oscloud/vendors/js/select2.min.js' %}"></script>
+    <script type="text/javascript">
+    </script>
+{% endblock %}
+
